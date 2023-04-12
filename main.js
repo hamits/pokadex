@@ -97,24 +97,42 @@ function callApi(id) {
         })
 }
 
-var a=1
+var a = 1
 
-btnNext.addEventListener("click",()=>{
+btnNext.addEventListener("click", () => {
     pokeCard.innerHTML = ``
-    a+=20
-    for (let i = a; i <= a+19; i++) {
+    if (a == 980) {
+        a = 1
+    }
+    else {
+        a += 20
+    }
+
+    for (let i = a; i <= a + 19; i++) {
         callApi(i)
-        if (i==980){
-            a=-19
-        }
-    }    
+    }
 })
 
-for (let i = a; i <= a+19; i++) {
+btnPrev.addEventListener("click", () => {
+    pokeCard.innerHTML = ``
+    if (a <= 1) {
+        a=1
+    }
+    else {
+        a -= 20
+    }
+
+    for (let i = a; i <= a + 19; i++) {
+        callApi(i)
+    }
+})
+
+
+for (let i = a; i <= a + 19; i++) {
     callApi(i)
 }
 
-searchBtn.addEventListener("click", ()=>{
+searchBtn.addEventListener("click", () => {
     pokeCard.innerHTML = ``
     callApi(searchInput.value)
 })
